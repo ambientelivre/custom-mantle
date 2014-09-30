@@ -330,11 +330,11 @@ alert("aqui1-W");
       var clickedFolder = this.get("foldersTreeModel").get("clickedFolder");
       var folderPath = clickedFolder.obj.attr("path");
       
-      alert("aqui-X1");
+      //alert("aqui-X1");
       
       var model = FileBrowser.fileBrowserModel; // trap model
 
-      alert("aqui-X2");
+      //alert("aqui-X2");
      
       if (folderPath == ".trash") {
         this.updateTrashLastClick();
@@ -550,8 +550,6 @@ alert("aqui1-W");
      * Path has already been converted to colons
      */
     
-  
-    
     getFileTreeRequest: function (path) {
     	  alert("aqui11");	
 
@@ -683,6 +681,9 @@ alert("aqui1-W");
     },
 
     fetchData: function (path, callback) {
+    	
+    alert ("Inicio funcao fetchData");	
+    	
       var myself = this,
           url = this.getFileListRequest(FileBrowser.encodePathComponents(path == null ? ":" : Encoder.encodeRepositoryPath(path))),
           localSequenceNumber = myself.get("sequenceNumber");
@@ -736,24 +737,33 @@ alert("aqui1-W");
 
         }
       });
+      
+      alert ("Fim funcao fetchData");	
+
     },
 
     /*
      * Path has already been converted to colons
      */
+    // retorna o caminho completo que foi clicado na arvore de diretórios
+    // Caminho já foi convertido para dois pontos
+    //
+    
     getFileListRequest: function (path) {
       var request;
-      
-      alert("aqui12");	
 
-      
-      if (path == ".trash") {
+       echo (" chamando função getFileListRequest que cria devolve o path clicado pelo usuário");
+
+       if (path == ".trash") {
         request = CONTEXT_PATH + "api/repo/files/deleted";
       }
       else {
         //request = CONTEXT_PATH + "api/repo/files/" + path + "/tree?depth=-1&showHidden=" + this.get("showHiddenFiles") + "&filter=*|FILES";
           request = CONTEXT_PATH + "api/repo/files/" + path + "/children?showHidden=" + this.get("showHiddenFiles") + "&filter=*|FILES";         
       }
+      
+      alert("PATH=" +  request);
+      
       return request;
     }
   });
