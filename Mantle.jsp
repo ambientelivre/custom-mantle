@@ -67,7 +67,7 @@
             haveMobileRedirect = true;
   %>
   <script type="text/javascript">
-    //Get URL parameters
+  //Get URL parameters
     var getParams = document.URL.split("?");
     var params = '';
 
@@ -81,6 +81,7 @@
     } else {
       document.write('<META HTTP-EQUIV="refresh" CONTENT="0;URL=<%=mobileRedirect%>' + params + '">');
     }
+    
   </script>
   <%
           break;
@@ -103,6 +104,7 @@
 
   <script type="text/javascript" src="mantle/nativeScripts.js"></script>
   <script type="text/javascript">
+  
       
     try{
     if (window.opener && window.opener.reportWindowOpened != undefined) {
@@ -161,7 +163,17 @@
 
     // Require Angular Plugin Initialization
     require(['mantle/puc-api/pucAngularApi']);
-  </script>
+
+   // PAREI AQUI
+  //Marcio - Alterada a perspectiva	
+ //   alert("aqui1");
+ //   window.top.mantle_setPerspective('browser.perspective');
+ //   alert("aqui2");
+    
+
+    
+    
+    </script>
 
 </head>
 
@@ -175,7 +187,7 @@
 
  String userName = PentahoSessionHolder.getSession().getName();
 
-if (userName.equals("admin")) { 
+//if (!userName.equals("admin")) { 
 %>
     <div id="pucHeader" cellspacing="0" cellpadding="0">
       <div id="pucMenuBar"></div>
@@ -185,7 +197,7 @@ if (userName.equals("admin")) {
     </div>
 <%
 	out.print("<div id='pucContent'></div>"); 
- } 
+ //} 
 %>
 
   </div>
@@ -231,10 +243,10 @@ if (userName.equals("admin")) {
     }, 4000);
   });
 
-</script>
+  </script>
 
 <!-- OPTIONAL: include this if you want history support -->
-<iframe id="__gwt_historyFrame" style="width:0px;height:0px;border:0;display:none"></iframe>
+<iframe id="__gwt_historyFrame" style="width:0px;height:0px;border:10;display:none"></iframe>
 </body>
 
 <script language='javascript' src='mantle/mantle.nocache.js'></script>

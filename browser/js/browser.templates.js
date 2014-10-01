@@ -25,27 +25,36 @@ define([
   });
 
   //main component structure
-if ( window.top.HOME_FOLDER != "/home/admin") { // aqui deve ser igual 
+//if ( window.top.HOME_FOLDER != "/home/admin") { // aqui deve ser igual 
+//  templates.structure = Handlebars.compile(
+//      "<div id='fileBrowserFolders' class='span4 well fileBrowserColumn'>" +
+//          "<div class='body'></div>" +
+//          "</div>" +
+//          "<div id='fileBrowserFiles' class='span4 well fileBrowserColumn'>" +
+//          "<div class='body'></div>" +
+//          "</div>" +
+//          "<div id='fileBrowserButtons' class='span4 well fileBrowserColumn'>" +
+//          "<div class='body'></div>" +
+//          "</div>");
+
   templates.structure = Handlebars.compile(
-      "<div id='fileBrowserFolders' class='span4 well fileBrowserColumn'>" +
-          "<div class='body'></div>" +
-          "</div>" +
-          "<div id='fileBrowserFiles' class='span4 well fileBrowserColumn'>" +
-          "<div class='body'></div>" +
-          "</div>" +
-          "<div id='fileBrowserButtons' class='span4 well fileBrowserColumn'>" +
-          "<div class='body'></div>" +
-          "</div>");
-}
-else {
-  templates.structure = Handlebars.compile(
-	      "<div id='fileBrowserFolders' class='span4 well fileBrowserColumn'>" +
+	      "<div id='fileBrowserFolders' class='well fileBrowserColumn' style='height:50%';>" +
 	          "<div class='body'></div>" +
-	      "</div>" +
-  	      "<div class='span8 well fileBrowserColumn'>" +
-  	          "<div class='body'></div>" +
+	          "</div>" +
+	          "<div id='fileBrowserFiles' class='well fileBrowserColumn' style='height:30%'>" +
+	          "<div class='body'></div>" +
           "</div>");
-}  
+  
+  //}
+//else {
+//  templates.structure = Handlebars.compile(
+//	      "<div id='fileBrowserFolders' class='span4 well fileBrowserColumn'>" +
+//	          "<div class='body'></div>" +
+//	      "</div>" +
+// 	      "<div class='span8 well fileBrowserColumn'>" +
+//  	          "<div class='body'></div>" +
+//          "</div>");
+//}  
 
   alert("BT-aqui1");
   

@@ -551,6 +551,9 @@ alert("aqui1-W");
      */
     
     getFileTreeRequest: function (path) {
+    	
+        return CONTEXT_PATH + "api/repo/files/" + path + "/tree?depth=-1&showHidden=" + this.get("showHiddenFiles") + "&filter=*|FOLDERS";
+	
     	  alert("aqui11");	
 
        //return CONTEXT_PATH + "api/repo/files/" + path + "/tree?depth=-1&showHidden=" + this.get("showHiddenFiles") + "&filter=*|FILES";
@@ -559,7 +562,7 @@ alert("aqui1-W");
     	  
     	  
      //alert(CONTEXT_PATH + "api/repo/files/" + path + "/tree?depth=-1&showHidden=" + this.get("showHiddenFiles") + "&filter=*|FOLDERS");
-      return CONTEXT_PATH + "api/repo/files/" + path + "/tree?depth=-1&showHidden=" + this.get("showHiddenFiles") + "&filter=*|FOLDERS";
+   //   return CONTEXT_PATH + "api/repo/files/" + path + "/tree?depth=-1&showHidden=" + this.get("showHiddenFiles") + "&filter=*|FOLDERS";
       //TESTE return CONTEXT_PATH + "api/repo/files/" + path + "/children?showHidden=" + this.get("showHiddenFiles") + "&filter=*|FILES";
       
      // return CONTEXT_PATH + "api/repo/files/" + path + "/children?&showHidden=" + this.get("showHiddenFiles") + "&filter=*|FILES";
@@ -752,17 +755,17 @@ alert("aqui1-W");
     getFileListRequest: function (path) {
       var request;
 
-       echo (" chamando função getFileListRequest que cria devolve o path clicado pelo usuário");
+  //     echo (" chamando função getFileListRequest que cria devolve o path clicado pelo usuário");
 
        if (path == ".trash") {
         request = CONTEXT_PATH + "api/repo/files/deleted";
       }
       else {
-        //request = CONTEXT_PATH + "api/repo/files/" + path + "/tree?depth=-1&showHidden=" + this.get("showHiddenFiles") + "&filter=*|FILES";
-          request = CONTEXT_PATH + "api/repo/files/" + path + "/children?showHidden=" + this.get("showHiddenFiles") + "&filter=*|FILES";         
+          //fetchrequest = CONTEXT_PATH + "api/repo/files/" + path + "/tree?depth=-1&showHidden=" + this.get("showHiddenFiles") + "&filter=*|FILES";
+          request = CONTEXT_PATH + "api/repo/files/" + path + "/children?showHidden=" + this.get("showHiddenFiles") + "&filter=*|FILES";
       }
       
-      alert("PATH=" +  request);
+     // alert("PATH=" +  request);
       
       return request;
     }
@@ -835,7 +838,7 @@ alert("aqui1-W");
     render: function () {
         alert("aqui13-b");	
 
- if ( window.top.HOME_FOLDER != "/home/admin") { // aqui deve ser igual 
+ //if ( window.top.HOME_FOLDER != "/home/admin") { // aqui deve ser igual 
         
         var myself = this;
 
@@ -849,14 +852,14 @@ alert("aqui1-W");
         $(this).attr("disabled", "disabled");
       });
     
- } // fim marcio 
+ //} // fim marcio 
  
     },
 
     updateButtonsHeader: function () {
     	
         alert("aqui14");	
-  if ( window.top.HOME_FOLDER != "/home/admin") { // aqui deve ser igual 
+ // if ( window.top.HOME_FOLDER != "/home/admin") { // aqui deve ser igual 
 	
       var myself = this,
           $buttonsContainer = myself.$el.find($("#fileBrowserButtons"));
@@ -884,7 +887,7 @@ alert("aqui1-W");
 
       //require buttons header template
       $buttonsContainer.prepend($(templates.buttonsHeader(obj)));
-  }//fim marcio 
+//  }//fim marcio 
     },
 
     updateFolderBrowserHeader: function () {

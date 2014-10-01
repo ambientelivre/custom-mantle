@@ -55,7 +55,7 @@
 
 <!-- Require File Browser -->
 <script type="text/javascript">
-
+ 
   //Marcio esta funcão e requisitada ao abrir algun artefato de BI ( dashboard , xaction , report )
   //Marcio a variavel path tem o atalho do local e nome do artefato e a ver mode se edição(edit) ou execução (run) 
   function openRepositoryFile(path, mode) {
