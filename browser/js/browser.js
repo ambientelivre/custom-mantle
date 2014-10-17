@@ -374,9 +374,16 @@ alert("aqui1-W");
     updateFileClicked: function () {
 
         alert("aqui9");	
- 	
+ 
+      
+      alert("aqui9-b");	
+      
     	
       var clickedFile = this.get("fileListModel").get("clickedFile");
+      
+      //alert(clickedFile.obj.attr("path") + "test");
+      
+      
       this.set("clickedFile", clickedFile);
       if (this.get("clickedFolder").obj.attr("path") == ".trash") {
         this.updateTrashItemLastClick();

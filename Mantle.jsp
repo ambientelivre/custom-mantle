@@ -163,18 +163,25 @@
 
     // Require Angular Plugin Initialization
     require(['mantle/puc-api/pucAngularApi']);
-
-   // PAREI AQUI
-  //Marcio - Alterada a perspectiva	
- //   alert("aqui1");
- //   window.top.mantle_setPerspective('browser.perspective');
- //   alert("aqui2");
-    
-
     
     
     </script>
+<%
 
+ String userName = PentahoSessionHolder.getSession().getName();
+
+if (!userName.equals("admin")) { 
+// dmininui o tamanho do botao da tabela para seleacao do usuário
+%>
+<style>
+#pucUserDropDown
+.custom-dropdown {
+    padding-top: 0px;
+}
+</style>
+<%
+}
+%>
 </head>
 
 <body oncontextmenu="return false;" class="pentaho-page-background">
@@ -185,9 +192,8 @@
 <%@page import="org.pentaho.platform.engine.core.system.PentahoSessionHolder" %>
 <%
 
- String userName = PentahoSessionHolder.getSession().getName();
 
-//if (!userName.equals("admin")) { 
+if (userName.equals("admin")) { 
 %>
     <div id="pucHeader" cellspacing="0" cellpadding="0">
       <div id="pucMenuBar"></div>
@@ -195,9 +201,23 @@
       <div id="pucToolBar"></div>
       <div id="pucUserDropDown"></div>
     </div>
+    <div id='pucContent'></div>
 <%
-	out.print("<div id='pucContent'></div>"); 
- //} 
+ } 
+else {
+	//esconde menus caso nao seja admin
+%>
+
+
+    <div id="pucHeader" cellspacing="0" cellpadding="0" style="height: 4px;padding: 0px 0px 0px" >
+      <div id="pucMenuBar" style="display:none" ></div>
+      <div id="pucPerspectives" style="display:none" ></div>
+      <div id="pucToolBar" style="display:none"></div>
+      <div id="pucUserDropDown"></div>
+    </div>
+    <div id="pucContent" style="top: 23px" ></div>
+<%	
+}
 %>
 
   </div>

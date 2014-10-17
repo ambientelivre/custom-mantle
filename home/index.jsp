@@ -281,7 +281,7 @@
   </div>
 </div>
   <script type="text/javascript">
-		
+  
 		var popup_init = false;
 		
 		function preCreatePopover(){
@@ -295,7 +295,18 @@
 				popup_init = true;
 			}
 		}
-  
+
+		<%
+		 String userName = PentahoSessionHolder.getSession().getName();
+   		 if (!userName.equals("admin")) { 
+		%>
+			  //Marcio - Alterada a perspectiva	
+ 			  window.top.mantle_setPerspective('browser.perspective');
+	
+	<%
+		}
+	%>
+		
   </script>
 </body>
 </html>
