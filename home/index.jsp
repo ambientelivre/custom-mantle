@@ -325,12 +325,10 @@
    		 if (!userName.equals("admin")) { 
 		%>
 			  //Marcio - Alterada a perspectiva	
- 			   window.top.mantle_setPerspective('browser.perspective');
+ 			  window.top.mantle_setPerspective('browser.perspective');
 			  // abaixo teste que abre dashboard ja na inicializaçao
+    		  window.top.mantle_openRepositoryFile("/public/plugin-samples/pentaho-cdf/start_here.xcdf", "RUN");
     		  //window.top.mantle_openRepositoryFile("/public/plugin-samples/pentaho-cdf/start_here.xcdf", "RUN");
-    		  //window.top.mantle_openRepositoryFile("/public/plugin-samples/pentaho-cdf/start_here.xcdf", "RUN");
-
-			  
 	<%
 		}
 	%>
