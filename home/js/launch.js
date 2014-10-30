@@ -140,7 +140,7 @@ define([
 
 
               })
-            });
+            }); 
           }
 
           GettingStartedWidget.checkInternet(jHtml, function () {

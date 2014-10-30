@@ -44,6 +44,32 @@
   <!-- Le styles -->
   <link href="css/home.css" rel="stylesheet">
 
+		<%
+		 String userNameW = PentahoSessionHolder.getSession().getName();
+   		 if (!userNameW.equals("admin")) { 
+		%>  
+ <style>
+ 
+.pentaho-tab-panel {
+
+}
+</style>
+	<%
+		}
+   		 else { %>
+   			 
+        <style>
+   		#fileBrowser {
+   		    width: 100%; 
+   		 }
+   		 
+   		 
+   		</style>
+ 	<% } %>
+   			 
+
+  
+
   <!-- We need web context for requirejs and css -->
   <script type="text/javascript" src="webcontext.js?context=mantle&cssOnly=true"></script>
 
@@ -272,16 +298,14 @@
     <div class="span9" style="overflow:visible">
 
       <div class="row-fluid welcome-container">
-
         <iframe src="content/welcome/index.html" class='welcome-frame' frameborder="0" scrolling="no"></iframe>
-
       </div>
 
     </div>
   </div>
 </div>
   <script type="text/javascript">
-  
+
 		var popup_init = false;
 		
 		function preCreatePopover(){
@@ -301,12 +325,16 @@
    		 if (!userName.equals("admin")) { 
 		%>
 			  //Marcio - Alterada a perspectiva	
- 			  window.top.mantle_setPerspective('browser.perspective');
-	
+ 			   window.top.mantle_setPerspective('browser.perspective');
+			  // abaixo teste que abre dashboard ja na inicializaçao
+    		  //window.top.mantle_openRepositoryFile("/public/plugin-samples/pentaho-cdf/start_here.xcdf", "RUN");
+    		  //window.top.mantle_openRepositoryFile("/public/plugin-samples/pentaho-cdf/start_here.xcdf", "RUN");
+
+			  
 	<%
 		}
 	%>
-		
+
   </script>
 </body>
 </html>

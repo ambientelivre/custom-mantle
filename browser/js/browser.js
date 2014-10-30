@@ -1,4 +1,4 @@
-/*!
+ /*!
  * This program is free software; you can redistribute it and/or modify it under the
  * terms of the GNU Lesser General Public License, version 2.1 as published by the Free Software
  * Foundation.
@@ -34,10 +34,9 @@ define([
   "common-ui/jquery-pentaho-i18n",
   "common-ui/jquery"
 ], function (FileButtons, FolderButtons, TrashButtons, TrashItemButtons, BrowserUtils, MultiSelectButtons, RenameDialog, Spinner, spin, templates, Encoder) {
+ 
 
-
-alert("aqui1-W");	
-	
+  console.log('passei pelo define Browser.js'); 	
   if (window.top.mantle_isBrowseRepoDirty == undefined) {
     window.top.mantle_isBrowseRepoDirty = false;
   }
@@ -45,6 +44,8 @@ alert("aqui1-W");
   this.FileBrowser = {};
 
   FileBrowser.urlParam = function (paramName) {
+   console.log('passei pela função FileBrowser.urlParam - browser.js'); 	
+  
     var value = new RegExp('[\\?&]' + paramName + '=([^&#]*)').exec(window.top.location.href);
     if (value) {
       return value[1];
@@ -54,7 +55,6 @@ alert("aqui1-W");
     }
   },
 
-  alert("aqui2");	
 
     // retrieve i18n map
       jQuery.i18n.properties({
@@ -82,17 +82,17 @@ alert("aqui1-W");
   FileBrowser.canDownload = false;
   FileBrowser.canPublish = false;
 
-  alert("aqui3");	
-
   
   /**
    * Encode a path that has the slashes converted to colons
    **/
   FileBrowser.encodePathComponents = function (path) {
+	console.log(' passei pela funcao FileBrowser.encodePathComponents - browser.js');
     return Encoder.encode("{0}", path);
   };
 
   FileBrowser.setShowHiddenFiles = function (value) {
+    console.log(' passei pela funcao  FileBrowser.setShowHiddenFiles - browser.js');	    
     this.showHiddenFiles = value;
   };
 
@@ -125,11 +125,14 @@ alert("aqui1-W");
   };
 
   FileBrowser.updateFile = function (initialFilePath) {
+      console.log('passei pela funcao FileBrowser.updateFile - browser.js');
       var fileJson = JSON.parse(initialFilePath);
       this.redraw(fileJson.path, fileJson.path + "/" + fileJson.fileName);
   }
 
   FileBrowser.updateData = function () {
+    console.log('passei pela funcao FileBrowser.updateData - browser.js');
+	  
     if (this.fileBrowserModel != null && this.fileBrowserModel.get('fileListModel') != null) {
       this.fileBrowserModel.get('fileListModel').updateData();
     }
@@ -160,10 +163,9 @@ alert("aqui1-W");
 
   };
 
-  alert("aqui4");	
-
   
   FileBrowser.redraw = function (initialPath, initialFile) {
+    console.log('passei pela funcao FileBrowser.redraw - browser.js');	  
     var myself = this;
       
     myself.fileBrowserModel = new FileBrowserModel({
@@ -186,6 +188,7 @@ alert("aqui1-W");
   };
 
   FileBrowser.openFolder = function (path) {
+	console.log('passei pela funcao openFolder');  
     var myself = this;
 
     if (myself.fileBrowserModel.get('startFolder') == path) {
@@ -195,10 +198,6 @@ alert("aqui1-W");
       myself.fileBrowserModel.set("startFolder", path);
     }
   };
-
-  alert("aqui5");	
-
-	//alert(CONTEXT_PATH);
 
   var FileBrowserModel = Backbone.Model.extend({
     defaults: {
@@ -238,8 +237,9 @@ alert("aqui1-W");
 
     
     initialize: function () {
-        alert("aqui7");	
-//if ( window.top.HOME_FOLDER != "/home/admin") { // aqui deve ser igual 
+        console.log('passe pela função initialize');	
+
+        //if ( window.top.HOME_FOLDER != "/home/admin") { // aqui deve ser igual 
 
         
       var myself = this,
@@ -283,26 +283,20 @@ alert("aqui1-W");
       foldersTreeModel.on("change:clicked", myself.updateFolderLastClick, myself);
       fileListModel.on("change:clicked", myself.updateFileLastClick, myself);
 
-      alert("aqui8-0"); 
-      alert(foldersTreeModel.toSource());
+      //alert(foldersTreeModel.toSource());
       myself.set("foldersTreeModel", foldersTreeModel);
       myself.set("fileListModel", fileListModel);
 
       myself.on("change:showDescriptions", myself.updateDescriptions, myself);
       
       window.top.mantle_addHandler("FavoritesChangedEvent", $.proxy(myself.onFavoritesChanged, myself));
-      alert("aqui8...");	
 
-      myself.on("change:startFolder", myself.updateStartFolder, myself);
-      alert("aqui8-A");	
-      
-      
+      myself.on("change:startFolder", myself.updateStartFolder, myself);      
     },
 
     
     updateStartFolder: function () {
-    	
-    	alert("aqui-8B");
+      console.log('passe pela função updateStartFolder');	
       var myself = this;
       
       if (myself.get("fileListModel").get("path") == myself.get("startFolder")) {
@@ -321,6 +315,7 @@ alert("aqui1-W");
     },
 
     updateClicked: function () {
+      console.log('passe pela função updateClicked');	    	
       this.set("clicked", true);
     },
 
@@ -330,11 +325,9 @@ alert("aqui1-W");
       var clickedFolder = this.get("foldersTreeModel").get("clickedFolder");
       var folderPath = clickedFolder.obj.attr("path");
       
-      //alert("aqui-X1");
       
       var model = FileBrowser.fileBrowserModel; // trap model
 
-      //alert("aqui-X2");
      
       if (folderPath == ".trash") {
         this.updateTrashLastClick();
@@ -350,9 +343,7 @@ alert("aqui1-W");
       //Ajax request to check write permissions for folder
       
       
-     // alert(CONTEXT_PATH + 'api/repo/files/' + FileBrowser.encodePathComponents(folderPath) + '/canAccessMap');
-      
-      $.ajax({   	  
+      $.ajax({
         url: CONTEXT_PATH + 'api/repo/files/' + FileBrowser.encodePathComponents(folderPath) + '/canAccessMap',
         type: "GET",
         beforeSend: function (request) {
@@ -363,6 +354,7 @@ alert("aqui1-W");
         cache: false,
         success: function (response) {
           folderButtons.updateFolderPermissionButtons(response, model.get('browserUtils').multiSelectItems);
+          //RunCustomAmbienteLivre2();
         },
         error: function (response) {
           folderButtons.updateFolderPermissionButtons(false, model.get('browserUtils').multiSelectItems);
@@ -370,19 +362,11 @@ alert("aqui1-W");
       });
 
     },
-
+    
     updateFileClicked: function () {
-
-        alert("aqui9");	
- 
-      
-      alert("aqui9-b");	
-      
-    	
+      console.log('passe pela função updateFileClicked');	    	  
       var clickedFile = this.get("fileListModel").get("clickedFile");
-      
-      //alert(clickedFile.obj.attr("path") + "test");
-      
+            
       
       this.set("clickedFile", clickedFile);
       if (this.get("clickedFolder").obj.attr("path") == ".trash") {
@@ -404,15 +388,19 @@ alert("aqui1-W");
         url: CONTEXT_PATH + 'api/repo/files/' + FileBrowser.encodePathComponents(filePath) + '/canAccessMap',
         type: "GET",
         beforeSend: function (request) {
+          console.log('passei pela função beforeSend - browser'); 	
           request.setRequestHeader('accept', 'application/json');
         },
         data: {"permissions": "1|2"}, //check write and delete permissions for the given file
         async: true,
         cache: false,
         success: function (response) {
+          console.log('passei pela função sucess ajax - browser'); 	
           fileButtons.updateFilePermissionButtons(response);
+          window.parent.RunCustomAmbienteLivre();
         },
         error: function (response) {
+          console.log('passei pela função error ajax - browser'); 	
           fileButtons.updateFilePermissionButtons(false);
         }
       });
@@ -435,6 +423,7 @@ alert("aqui1-W");
     },
 
     getLastClick: function () {
+      console.log('passei pela função getLastClick - browser'); 	    	
       return this.get("lastClick");
     },
 
@@ -443,6 +432,7 @@ alert("aqui1-W");
     },
 
     getFileClicked: function () {
+      console.log('passei pela função getFileClicked - browser'); 	    	 	
       return this.get("clickedFile") == null || this.get("clickedFile") == undefined ? null : this.get("clickedFile").obj; // [BISERVER-9128] - wrap in jquery object
     },
 
@@ -450,10 +440,9 @@ alert("aqui1-W");
       var myself = this;
       //trigger file list update
       myself.get("fileListModel").set("path", myself.get("clickedFolder").obj.attr("path"));
-
     },
 
-    updateDescriptions: function () {
+    updateDescriptions: function () { 	
       var myself = this;
 
       myself.get("fileListModel").set("showDescriptions", myself.get("showDescriptions"));
@@ -482,8 +471,6 @@ alert("aqui1-W");
     },
 
     initialize: function () {
-        alert("aqui10");	
-	
     	
       var myself = this;
 
@@ -525,12 +512,7 @@ alert("aqui1-W");
           tree = null,
           localSequenceNumber = myself.get("sequenceNumber");
 
-      alert("aqui11-0");
-      
       var url = this.getFileTreeRequest(FileBrowser.encodePathComponents(path == null ? ":" : Encoder.encodeRepositoryPath(path)));
-
-      alert("aqui11-0A");
- 
       
       $.ajax({
         async: true,
@@ -561,29 +543,16 @@ alert("aqui1-W");
     	
         return CONTEXT_PATH + "api/repo/files/" + path + "/tree?depth=-1&showHidden=" + this.get("showHiddenFiles") + "&filter=*|FOLDERS";
 	
-    	  alert("aqui11");	
-
        //return CONTEXT_PATH + "api/repo/files/" + path + "/tree?depth=-1&showHidden=" + this.get("showHiddenFiles") + "&filter=*|FILES";
-   	  
-    	  
-    	  
-    	  
-     //alert(CONTEXT_PATH + "api/repo/files/" + path + "/tree?depth=-1&showHidden=" + this.get("showHiddenFiles") + "&filter=*|FOLDERS");
    //   return CONTEXT_PATH + "api/repo/files/" + path + "/tree?depth=-1&showHidden=" + this.get("showHiddenFiles") + "&filter=*|FOLDERS";
       //TESTE return CONTEXT_PATH + "api/repo/files/" + path + "/children?showHidden=" + this.get("showHiddenFiles") + "&filter=*|FILES";
       
      // return CONTEXT_PATH + "api/repo/files/" + path + "/children?&showHidden=" + this.get("showHiddenFiles") + "&filter=*|FILES";
 
 //    	return CONTEXT_PATH + "api/repo/files/" + path + "/tree";
-	  alert("aqui11-A1");	
-
-    
     }
-
-    
   });
 
-  alert("aqui11-a");
   var FileBrowserFileListModel = Backbone.Model.extend({
     defaults: {
       clicked: false,
@@ -611,7 +580,7 @@ alert("aqui1-W");
     },
 
     initialize: function () {
-    	  alert("aqui11-b");
+      console.log('passei pela initialize do FileBrowserFileListModel - browser.js');	
       var myself = this;
       myself.set("cachedData", {}); // clear cached data on initialization - Backbone relates to old cachedData when new object is created
 
@@ -647,7 +616,6 @@ alert("aqui1-W");
     },
 
     reformatResponse: function (response) {
-    	  alert("aqui11-c");
       var newResp = {
         children: []
       }
@@ -691,8 +659,7 @@ alert("aqui1-W");
     },
 
     fetchData: function (path, callback) {
-    	
-    alert ("Inicio funcao fetchData");	
+      console.log('passei pela funcao fetchData - browser.js');	
     	
       var myself = this,
           url = this.getFileListRequest(FileBrowser.encodePathComponents(path == null ? ":" : Encoder.encodeRepositoryPath(path))),
@@ -747,9 +714,6 @@ alert("aqui1-W");
 
         }
       });
-      
-      alert ("Fim funcao fetchData");	
-
     },
 
     /*
@@ -760,20 +724,16 @@ alert("aqui1-W");
     //
     
     getFileListRequest: function (path) {
+      console.log('passei na função getFileListRequest - browser.js'); 	
       var request;
 
-  //     echo (" chamando função getFileListRequest que cria devolve o path clicado pelo usuário");
-
-       if (path == ".trash") {
+      if (path == ".trash") {
         request = CONTEXT_PATH + "api/repo/files/deleted";
       }
       else {
           //fetchrequest = CONTEXT_PATH + "api/repo/files/" + path + "/tree?depth=-1&showHidden=" + this.get("showHiddenFiles") + "&filter=*|FILES";
           request = CONTEXT_PATH + "api/repo/files/" + path + "/children?showHidden=" + this.get("showHiddenFiles") + "&filter=*|FILES";
-      }
-      
-     // alert("PATH=" +  request);
-      
+      }      
       return request;
     }
   });
@@ -784,15 +744,10 @@ alert("aqui1-W");
     },
 
     initialize: function () {
-    	alert("layout-1");
       this.initializeLayout();
-  	alert("layout-2");
       this.initializeOptions();
-  	alert("layout-3");
       this.configureListeners();
-  	alert("layout-4");
       this.render();
-  	alert("layout-5");
     },
 
     configureListeners: function () {
@@ -814,11 +769,10 @@ alert("aqui1-W");
     },
 
     initializeLayout: function () {
-      alert("aqui13-0");	
+      console.log('passei pela funcao initializeLayout');	
       var myself = this;
       myself.$el.empty();
       myself.$el.append($(templates.structure({})));
-      alert("aqui13-init");	      
     },
 
     initializeOptions: function () {
@@ -826,8 +780,6 @@ alert("aqui1-W");
 
       foldersTreeView = undefined;
       fileListView = undefined;
-
-      alert("aqui13-a");	
 
       this.foldersTreeView = new FileBrowserFolderTreeView({
         model: myself.model.get("foldersTreeModel"),
@@ -843,8 +795,6 @@ alert("aqui1-W");
     },
 
     render: function () {
-        alert("aqui13-b");	
-
  //if ( window.top.HOME_FOLDER != "/home/admin") { // aqui deve ser igual 
         
         var myself = this;
@@ -858,14 +808,11 @@ alert("aqui1-W");
       $("button.btn.btn-block").each(function () {
         $(this).attr("disabled", "disabled");
       });
-    
- //} // fim marcio 
  
     },
 
     updateButtonsHeader: function () {
     	
-        alert("aqui14");	
  // if ( window.top.HOME_FOLDER != "/home/admin") { // aqui deve ser igual 
 	
       var myself = this,
@@ -894,7 +841,6 @@ alert("aqui1-W");
 
       //require buttons header template
       $buttonsContainer.prepend($(templates.buttonsHeader(obj)));
-//  }//fim marcio 
     },
 
     updateFolderBrowserHeader: function () {
@@ -922,11 +868,11 @@ alert("aqui1-W");
 
       //require folders header template
       $folderBrowserContainer.prepend($(templates.folderBrowserHeader(obj)));
-
-
     },
 
     updateFileBrowserHeader: function () {
+      console.log('passei pela funcao updateFileBrowserHeader');	
+    	
       var $el = $(this.el),
           $folderBrowserContainer = $el.find($("#fileBrowserFiles"));
 
@@ -949,6 +895,7 @@ alert("aqui1-W");
     },
 
     updateButtons: function () {
+      console.log('passei pela funcao updateButtons'); 	
       var $el = $(this.el),
           $buttonsContainer = $el.find($("#fileBrowserButtons .body"));
 
@@ -1027,7 +974,7 @@ alert("aqui1-W");
     },
 
     updateButtonsMulti: function () {
-        alert("aqui15");	
+      console.log('passei pela funcao updateButtonsMulti'); 	
 
       var $el = $(this.el),
           $buttonsContainer = $el.find($("#fileBrowserButtons .body"));
@@ -1113,9 +1060,6 @@ alert("aqui1-W");
 
     initialize: function () {
    
-        alert("aqui16");	
-
-    	
       var myself = this,
           data = myself.model.get("data"),
           spinner = myself.model.get("spinner");
@@ -1169,7 +1113,6 @@ alert("aqui1-W");
 
       //close all children folders
       myself.$el.find(".folders").hide();
-
 
       //handle empty folders
       $(".folders").each(function () {
@@ -1241,8 +1184,6 @@ alert("aqui1-W");
     },
 
     updateDescriptions: function () {
-        alert("aqui17");	
-
     	
       var $folders = $(".folder"),
           showDescriptions = this.model.get("showDescriptions");
@@ -1336,6 +1277,7 @@ alert("aqui1-W");
     },
 
     clickFile: function (event) {
+     console.log('passei pela funcao clickFile - browser.js');	
 
       var prevClicked = this.model.get("clickedFile");
       if (this.model.get("anchorPoint")) {
@@ -1488,10 +1430,11 @@ alert("aqui1-W");
       $(".folder.selected").addClass("secondarySelected");
       $(".folder.selected").removeClass("selected");
 
-
+       console.log('passei pela funcao clickFile - fim - browser.js');
     },
 
     doubleClickFile: function (event) {
+      console.log('passei pela funcao doubleClickFile - browser.js'); 	
       var path = $(event.currentTarget).attr("path");
       //if not trash item, try to open the file.
       if (FileBrowser.fileBrowserModel.getLastClick() != "trashItem") {
@@ -1500,6 +1443,8 @@ alert("aqui1-W");
     },
 
     clickBody: function (event) {
+      console.log('passei pela funcao clickBody - browser.js'); 	
+    	
       if(!this.model.get("desel")){
 				$(".file.selected").removeClass("selected");
 				if(FileBrowser.fileBrowserModel.getLastClick() == 'file'){
@@ -1514,8 +1459,7 @@ alert("aqui1-W");
     },
 
     updateFileList: function () {
-    	
-        alert("aqui18");	
+      console.log('passei pela funcao updateFileList - browser.js'); 	
 
       var myself = this;
       this.render();
@@ -1611,8 +1555,51 @@ alert("aqui1-W");
 });
 
 function perspectiveActivated() {
-    alert("aqui19");	
-
+  console.log('passe pela função perspectiveActivated');
   window.top.mantle_isBrowseRepoDirty = true;
   FileBrowser.update(FileBrowser.fileBrowserModel.getFolderClicked().attr("path"));
 }
+
+function RunCustomAmbienteLivre2() {
+	console.log('passei RunCustomAmbienteLivre2');
+	// alert("rodando RUN");
+
+	/*if($('#applicationShell').hasClass("applicationShell")){
+		console.log('passei RunCustomAmbienteLivre2 e tem DIV');
+	}
+	else {
+		console.log('passei RunCustomAmbienteLivre2 e NAO tem DIV');
+        setTimeout("RunCustomAmbienteLivre2()", 300);			
+	}*/
+
+	console.log('RunCustomAmbienteLivre2 - Vou adicionar a class');
+
+	
+	//ADICIONA A CLASSE
+    $("#applicationShell").children().eq(1).addClass('lTab');
+    $("#applicationShell").children().eq(3).addClass('lBrowser');
+    
+   /* if($("#applicationShell").children().eq(3).addClass('lBrowser')) {
+		console.log('passei2 e child 3 NAO tem Class');	    	
+    }
+	else {
+			console.log('passei2 e child 3 NAO tem Class');
+	        setTimeout("RunCustomAmbienteLivre2()", 300);			
+	}
+*/
+    // removendo atributo aria-hiden
+    $("#applicationShell").children().eq(1).removeAttr('aria-hidden');
+    $("#applicationShell").children().eq(3).removeAttr('aria-hidden');
+	    
+    // removendo atributo style dysplay que estava none para null    
+	$("#applicationShell").children().eq(1).css('display','');
+	$("#applicationShell").children().eq(1).css('float','right');
+	$("#applicationShell").children().eq(1).css('width','77%');
+	        
+	$("#applicationShell").children().eq(3).css('display','');
+	$("#applicationShell").children().eq(3).css('float','left');
+	$("#applicationShell").children().eq(3).css('width','22%');
+	
+	console.log('RunCustomAmbienteLivre2 - fiz tudo');  
+}
+

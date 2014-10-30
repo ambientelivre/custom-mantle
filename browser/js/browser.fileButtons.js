@@ -25,6 +25,9 @@ define([
     renameDialog: null,
 
     init: function () {
+
+      console.log('passei pela função init');
+    	
       var that = this; // trap this
 
       that.browserUtils = new BrowserUtils();
@@ -118,6 +121,7 @@ define([
     renameDialog: null,
 
     initEventHandlers: function () {
+      console.log('passei pela função initEventHandlers'); 	
       var that = this; // trap this
 
       // listen for file action events
@@ -129,6 +133,7 @@ define([
     },
 
     buildParameter: function (path, title, id) {
+      console.log('passei pela função buildParameter');    	
       return {
         solutionPath: (path == null ? "/" : path ),
         fileNames: title,
@@ -137,6 +142,7 @@ define([
     },
 
     urlParam: function (paramName) {
+      console.log('passei pela função urlParam');        	
       var value = new RegExp('[\\?&]' + paramName + '=([^&#]*)').exec(window.top.location.href);
       if (value) {
         return value[1];
@@ -147,6 +153,8 @@ define([
     },
 
     canDownload: function (canDownload) {
+      console.log('passei pela função canDownload - browser.fileButtons');    	
+    	
       if (canDownload) {
         $('#downloadButton').show();
         $('#optional-separator').show();
@@ -158,10 +166,13 @@ define([
     },
 
     eventLogger: function (event) {
+      console.log('passei pela função eventLogger - browser.fileButtons');    	
       console.log(event.action + " : " + event.message);
     },
 
     updateFilePermissionButtons: function (permissions) {
+      console.log('passei pela função updateFilePermissionButtons - browser.fileButtons');
+      
       if (permissions != false) {
 
         for (var i = 0; i < permissions.setting.length; i++) {
@@ -191,9 +202,12 @@ define([
           }
         }
       }
+      console.log('passei pela função updateFilePermissionButtons-2 - browser.fileButtons');
+      //RunCustomAmbienteLivre();
     },
 
     eventLogger: function (event) {
+      console.log('passei pela função eventLogger2 - browser.fileButtons');        	
       console.log(event.action + " : " + event.message);
     },
 
@@ -240,7 +254,9 @@ define([
     },
 
     // Respond to changes in selected file
-    onFileSelect: function (path) {
+    onFileSelect: function (path) {     
+      console.log('passei pel função onFileSelect...');
+
       this.refreshFavoritesList(); // refresh if necessary
       this.toggleFavoriteContext(path);
 
@@ -266,6 +282,7 @@ define([
     },
 
     toggleFavoriteContext: function (path) {
+      console.log('passei pela função toggleFavoriteContext - browser.fileButtons.js');  	
       if (this.isItemAFavorite(path)) {
         this.isFavorite = true;
         this.updateFavoritesButton();
@@ -277,6 +294,7 @@ define([
     },
 
     updateFavoritesButton: function () {
+      console.log('passei pela função updateFavoritesButton - browser.fileButtons.js');
       if (this.isFavorite) {
         $favoritesButton = $('#favoritesButton');
         $favoritesButton.text(jQuery.i18n.prop("contextAction_removeFromFavorites"));
@@ -288,27 +306,34 @@ define([
     },
 
     openButtonHandler: function (path) {
+      console.log('passei pel função openButtonHandler...');
       window.top.mantle_openRepositoryFile(path, "RUN");
+      window.top.mantle_setPerspective('browser.perspective');      
     },
 
     openNewButtonHandler: function (path) {
+      console.log('passei pel função openNewButtonHandler...');
       window.top.mantle_openRepositoryFile(path, "NEWWINDOW");
       window.top.mantle_setPerspective('browser.perspective');
     },
 
     runInBackgroundHandler: function (path, title) {
+      console.log('passei pela função runInBackgroundHandler...');    	
       window.top.executeCommand("RunInBackgroundCommand", this.buildParameter(path, title));
     },
 
     editHandler: function (path) {
+      console.log('passei pela função editHandler...');     	
       window.top.mantle_openRepositoryFile(path, "EDIT");
     },
 
     deleteHandler: function (path, title, id) {
+      console.log('passei pela função deleteHandler...');     	
       window.top.executeCommand("DeleteFileCommand", this.buildParameter(path, title, id));
     },
 
     cutHandler: function (path, title, id) {
+      console.log('passei pela função cutHandler...');
       window.top.executeCommand("CutFilesCommand", this.buildParameter(path, title, id));
     },
 
@@ -317,6 +342,7 @@ define([
     },
 
     downloadHandler: function (path) {
+      console.log('passei pel função downloadHandler');     	
       window.top.executeCommand("ExportFileCommand", this.buildParameter(path));
     },
 
@@ -338,6 +364,7 @@ define([
     },
 
     propertiesHandler: function (path) {
+     console.log('passei pel função propertiesHandler');       	
       window.top.executeCommand("FilePropertiesCommand", this.buildParameter(path));
     },
 
@@ -347,6 +374,7 @@ define([
   };
 
   var FileButtons = function (i18n) {
+    console.log('passei pela função FileButtons');   	  
     this.i18n = i18n;
     this.init();
   }

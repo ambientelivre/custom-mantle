@@ -103,6 +103,7 @@
   <script language="javascript" type="text/javascript" src="webcontext.js?context=mantle"></script>
 
   <script type="text/javascript" src="mantle/nativeScripts.js"></script>
+  <script type="text/javascript" src="mantle/browser/js/simple-mantle.js"></script> 
   <script type="text/javascript">
   
       
@@ -171,13 +172,20 @@
  String userName = PentahoSessionHolder.getSession().getName();
 
 if (!userName.equals("admin")) { 
-// dmininui o tamanho do botao da tabela para seleacao do usuário
+// dmininui o tamanho do botao da tabela para selecao do usuário
 %>
 <style>
 #pucUserDropDown
 .custom-dropdown {
     padding-top: 0px;
 }
+
+.pentaho-tab-panel {
+	/*left: 200px !important;*/
+	width: 1110px !important; 
+}
+
+
 </style>
 <%
 }
@@ -207,21 +215,18 @@ if (userName.equals("admin")) {
 else {
 	//esconde menus caso nao seja admin
 %>
-
-
     <div id="pucHeader" cellspacing="0" cellpadding="0" style="height: 4px;padding: 0px 0px 0px" >
       <div id="pucMenuBar" style="display:none" ></div>
       <div id="pucPerspectives" style="display:none" ></div>
       <div id="pucToolBar" style="display:none"></div>
       <div id="pucUserDropDown"></div>
     </div>
-    <div id="pucContent" style="top: 23px" ></div>
+    <div id="pucContent" style="top: 23px"></div>
 <%	
 }
 %>
 
   </div>
-
   <div ng-view ng-show="viewContainer === 'ngView'" class="ng-app-view ng-app-element"></div>
   
 
@@ -246,16 +251,17 @@ else {
       }
 
       if (allFramesLoaded) {
+    	//alert("frames carregados");  
         busy.hide("pucPleaseWait");
         document.getElementById("pucWrapper").style.left = "0";
         document.getElementById("pucWrapper").style.position = "relative";
         window.allFramesLoaded = true;
+    	RunCustomAmbienteLivre(); 
       } else {
         // check again in a bit
         setTimeout("notifyOfLoad()", 300);
       }
     }
-
 
     // Remove when notifyOfLoad is called from PUC
     setTimeout(function () {
@@ -263,7 +269,51 @@ else {
     }, 4000);
   });
 
-  </script>
+  function RunCustomAmbienteLivre() {
+		console.log('passei RunCustomAmbienteLivre');
+		  <%
+		 if (!userName.equals("admin")) { 
+		 // dmininui o tamanho do botao da tabela para selecao do usuário
+		 %>
+		
+		//ADICIONA A CLASSE
+	    $("#applicationShell").children().eq(1).addClass('lTab');
+	    $("#applicationShell").children().eq(3).addClass('lBrowser');
+
+	    // removendo atributo aria-hiden
+	    $("#applicationShell").children().eq(1).removeAttr('aria-hidden');
+	    $("#applicationShell").children().eq(3).removeAttr('aria-hidden');
+		    
+	    // removendo atributo style dysplay que estava none para null    
+		$("#applicationShell").children().eq(1).css('display','');
+		$("#applicationShell").children().eq(1).css('float','right');
+		$("#applicationShell").children().eq(1).css('width','77%');
+		        
+		$("#applicationShell").children().eq(3).css('display','');
+		$("#applicationShell").children().eq(3).css('float','left');
+		$("#applicationShell").children().eq(3).css('width','22%');
+		
+		
+		//mostra iframe escondido ( browser ) dentro da 4 div o primeiro frame (browser.perspective)
+		$("#applicationShell").children().eq(3).children().eq(0).css('display','');
+		$("#applicationShell").children().eq(3).children().eq(0).removeAttr('aria-hidden');
+		
+		
+		console.log('RunCustomAmbienteLivre - fiz tudo');  
+		<%
+		 }
+		 %>
+
+		
+  }
+  
+   // deixar esta função não sei por que motivo mas com ela funciona o load da pagina corretamente
+   // se retirar ela perde a ordem de execução da RunCustomAMbienteLivre
+   $(window).load(function(){
+      //console.log('Page Loaded (OnLoad)');
+    });
+  
+</script>
 
 <!-- OPTIONAL: include this if you want history support -->
 <iframe id="__gwt_historyFrame" style="width:0px;height:0px;border:10;display:none"></iframe>

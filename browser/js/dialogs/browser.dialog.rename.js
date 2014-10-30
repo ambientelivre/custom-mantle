@@ -344,6 +344,7 @@ define([
     view: null,
 
     init: function (path, overrideType) {
+      console.log('passei na função init- browser.dialog'); 	
 			
       var repoPath = Encoder.encodeRepositoryPath( path );
 

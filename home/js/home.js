@@ -166,9 +166,11 @@ var controller = undefined;
 /**
  * this gets triggered when the Home perspective becomes active, must be globally available to get called
  */
-function perspectiveActivated() {
+function perspectiveActivated() { 	
   if (controller) {
     controller.refreshAll();
   }
+  //Marcio aqui direcionar somente quando diferente de Admin
+   window.top.mantle_setPerspective('browser.perspective');
 }
 

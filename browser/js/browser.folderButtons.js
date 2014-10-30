@@ -185,6 +185,7 @@ define([
     },
 
     propertiesHandler: function (path) {
+      console.log('passei pela função propertiesHandler com path=' + path);	
       window.top.executeCommand("FilePropertiesCommand", this.buildParameter(path));
     },
 

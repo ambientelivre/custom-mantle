@@ -29,6 +29,36 @@
 <!-- Le styles -->
 <link href="css/browser.css" rel="stylesheet">
 
+		<%
+		 String userNameW = PentahoSessionHolder.getSession().getName();
+   		 if (!userNameW.equals("admin")) { 
+		%>  
+   <style>
+#fileBrowser {
+    width: 100% !important; 
+}
+
+.main-container {
+	 /* max-width: 1344b px !important; */
+	 max-width: 240px !important;
+}
+
+</style>
+	<%
+		}
+   		 else { %>
+   			 
+        <style>
+   		#fileBrowser {
+   		    width: 100%; 
+   		 }
+   		 
+   		 
+   		</style>
+ 	<% } %>
+
+
+
 <!-- We need web context for requirejs and css -->
 <script type="text/javascript" src="webcontext.js?context=mantle&cssOnly=true"></script>
 
@@ -55,10 +85,11 @@
 
 <!-- Require File Browser -->
 <script type="text/javascript">
- 
+
   //Marcio esta funcão e requisitada ao abrir algun artefato de BI ( dashboard , xaction , report )
   //Marcio a variavel path tem o atalho do local e nome do artefato e a ver mode se edição(edit) ou execução (run) 
   function openRepositoryFile(path, mode) {
+	console.log('passei pela funcao openRepositoryFile' + ' path=' + path + ' mode=' + mode);  
 	  	  
     if (!path) {
       return;
@@ -73,17 +104,21 @@
     // force to open pdf files in another window due to issues with pdf readers in IE browsers
     // via class added on themeResources for IE browsers
     if (!($("body").hasClass("pdfReaderEmbeded") && extension == "pdf")) {
+      console.log('Xchamei a funcao setPerspective - index.jsp browser');
       parent.mantle_setPerspective('opened.perspective');
     }
+
+    //console.log('aquiiiiiiiiiiiiiiiii-1');
+	//window.top.mantle_setPerspective('browser.perspective');
+    //console.log('aquiiiiiiiiiiiiiiiii-2');     
+    
     window.parent.mantle_openRepositoryFile(path, mode);
   }
 
   var FileBrowser = null;
 
-  //Marcio esat função cria o obJeto fileBrowser responsável pela apresentação dos folders na pentaho-solutions
+  //Marcio esta função cria o objeto fileBrowser responsável pela apresentação dos folders na pentaho-solutions
   function initBrowser(canDownload, showHiddenFiles, showDescriptions, canPublish) {
-
-	  
 	  
     require(["js/browser"], function (pentahoFileBrowser) {
       FileBrowser = pentahoFileBrowser;
@@ -93,19 +128,18 @@
       FileBrowser.setShowDescriptions(showDescriptions);
       FileBrowser.setCanDownload(canDownload);
       FileBrowser.setCanPublish(canPublish);
-  
       
       //MARCIO open_dir =variavel com Pentaho Solution que esta selecionada ex. home/admin 	
       var open_dir = window.top.HOME_FOLDER;
   
       
       $.ajax({
-    	  
   			url: CONTEXT_PATH + "api/mantle/session-variable?key=scheduler_folder",
 				type: "GET",
 				cache: false,
 				async: true,
 				success: function (response) {
+					console.log('passei pela funcao success ajax - index.jsp');  	
 					if(response != null && response.length > 0){
 						open_dir = decodeURIComponent(response);
 							$.ajax({
@@ -124,8 +158,6 @@
      // alert(CONTEXT_PATH + "api/mantle/session-variable?key=scheduler_folder");
      // return 0;
    
-
-      
       if (window.top.mantle_addHandler == undefined) return;
 
       window.top.mantle_addHandler("ShowHiddenFilesEvent", function (event) {
@@ -138,17 +170,19 @@
       });
       
 
-
       window.top.mantle_addHandler("ShowDescriptionsEvent", function (event) {
+		console.log('passei pela funcao window.top.mantle_addHandler - index.jsp');  					
+    	  
         if (event.value != undefined) {
           FileBrowser.updateShowDescriptions(event.value);
         }
       });
 
-
       // refresh file list on successful delete
       window.top.mantle_addHandler("SolutionFileActionEvent", function (event) {
-        if (event.action.indexOf('DeleteFileCommand') >= 0 ||
+  		console.log('passei pela funcao window.top.mantle_addHandler - index.jsp');
+  		
+  		if (event.action.indexOf('DeleteFileCommand') >= 0 ||
             (event.action.indexOf('RestoreFileCommand') >= 0) ||
             (event.action.indexOf('DeletePermanentFileCommand') >= 0)) {
           if (event.message == 'Success') {
@@ -206,6 +240,8 @@
       });
 
       window.top.mantle_addHandler("SolutionFolderActionEvent", function (event) {
+    	  console.log('passe pela função mantle_addHandler');	
+
           // refresh folder list on create new folder / delete folder / import
           if (event.action.indexOf('NewFolderCommand') >= 0 ||
                   event.action.indexOf('DeleteFolderCommand') >= 0 ||
@@ -302,8 +338,7 @@
   }
 
   function checkDownload() {
-	  
-	 // alert(CONTEXT_PATH);
+    console.log('passei pela funcao checkDownload');	  
 	  
     $.ajax({
       url: CONTEXT_PATH + "api/authorization/action/isauthorized?authAction=org.pentaho.security.administerSecurity",
@@ -368,16 +403,15 @@
 
   }
 
-</script>
-
+  </script>
 </head>
-
 <body data-spy="scroll" data-target=".sidebar">
-
-
 <div class="container-fluid main-container fill-absolute">
   <div id="fileBrowser" class="row-fluid fill-absolute">
   </div>
 </div>
+<script type="text/javascript">
+</script>
+
 </body>
 </html>

@@ -13,13 +13,12 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  width: 20%; // Marcio div ao redor do Folders e Files
 }
 
 .main-container {
   padding-top: 20px;
   padding-bottom: 20px;
-  max-width: 1024px;
+  max-width: 1024;
   margin: 0 auto;
 }
 

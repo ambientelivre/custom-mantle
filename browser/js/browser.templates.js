@@ -25,18 +25,19 @@ define([
   });
 
   //main component structure
-//if ( window.top.HOME_FOLDER != "/home/admin") { // aqui deve ser igual 
-//  templates.structure = Handlebars.compile(
-//      "<div id='fileBrowserFolders' class='span4 well fileBrowserColumn'>" +
-//          "<div class='body'></div>" +
-//          "</div>" +
-//          "<div id='fileBrowserFiles' class='span4 well fileBrowserColumn'>" +
-//          "<div class='body'></div>" +
-//          "</div>" +
-//          "<div id='fileBrowserButtons' class='span4 well fileBrowserColumn'>" +
-//          "<div class='body'></div>" +
-//          "</div>");
-
+if ( window.top.HOME_FOLDER == "/home/admin") { // aqui deve ser igual 
+  templates.structure = Handlebars.compile(
+      "<div id='fileBrowserFolders' class='span4 well fileBrowserColumn'>" +
+          "<div class='body'></div>" +
+          "</div>" +
+          "<div id='fileBrowserFiles' class='span4 well fileBrowserColumn'>" +
+          "<div class='body'></div>" +
+          "</div>" +
+          "<div id='fileBrowserButtons' class='span4 well fileBrowserColumn'>" +
+          "<div class='body'></div>" +
+          "</div>");
+}
+else {  
   templates.structure = Handlebars.compile(
 	      "<div id='fileBrowserFolders' class='well fileBrowserColumn' style='height:50%';>" +
 	          "<div class='body'></div>" +
@@ -44,7 +45,7 @@ define([
 	          "<div id='fileBrowserFiles' class='well fileBrowserColumn' style='height:30%'>" +
 	          "<div class='body'></div>" +
           "</div>");
-  
+  }
   //}
 //else {
 //  templates.structure = Handlebars.compile(
@@ -55,8 +56,6 @@ define([
 //  	          "<div class='body'></div>" +
 //          "</div>");
 //}  
-
-  alert("BT-aqui1");
   
   //header for folder browser
   templates.folderBrowserHeader = Handlebars.compile(
@@ -79,7 +78,7 @@ define([
           "<div id='filesHeader' class='header'>{{i18n 'files'}}</div>" +
           "{{/if}}");
 
-  alert("BT-aqui2");
+ // alert("BT-aqui2");
 
   //header for buttons
   templates.buttonsHeader = Handlebars.compile(
@@ -107,9 +106,6 @@ define([
 
   //buttons template to create list of buttons based on one object
   templates.buttons = Handlebars.compile("{{#each buttons}}{{button}}{{/each}}");
-
-  alert("BT-aqui3");
-
   
   //folder template with recursive behavior
   templates.folderText =
@@ -137,7 +133,7 @@ define([
   //folders recursion
   templates.foldersText = "{{#each children}} {{> folder}} {{/each}}";
 
-  alert("BT-aqui4");
+ // alert("BT-aqui4");
 
   
   //file template
@@ -161,7 +157,6 @@ define([
           "{{/ifCond}}" +
           "{{/ifCond}}");
 
-  alert("BT-aqui5");
   
   //files template to create list of files based on one object
   templates.files = Handlebars.compile("{{#each children}} {{file}} {{/each}}");
@@ -172,8 +167,6 @@ define([
 
   //template for empty folder
   templates.emptyFolder = Handlebars.compile("<div class='emptyFolder'><span>{{i18n 'emptyFolder'}}</span></div>");
-
-  alert("BT-aqui6");
   
   //helper registration for button template
   Handlebars.registerHelper('button', function () {
@@ -191,7 +184,6 @@ define([
       }
   );
 
-  alert("BT-aqui7");
   //helper registration for file template
   Handlebars.registerHelper('file', function () {
     //handle file name
@@ -231,8 +223,6 @@ define([
     }
     return options.inverse(this);
   });
-
-  alert("BT-aqui8");
   
   //return object
   return {
