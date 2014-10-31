@@ -170,7 +170,8 @@ function perspectiveActivated() {
   if (controller) {
     controller.refreshAll();
   }
-  //Marcio aqui direcionar somente quando diferente de Admin
-   window.top.mantle_setPerspective('browser.perspective');
+  //simple-mantle  - Esta função e sempre chamada a cada vez que é fechada todas as abas da perspectiva
+  //Opened , fizemos o direcionamento para a perspectiva browser em todos os casos, mesmo para o admin
+   window.top.mantle_setPerspective('browser.perspective'); //simple-mantle
 }
 

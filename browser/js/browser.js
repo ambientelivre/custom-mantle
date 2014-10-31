@@ -354,7 +354,6 @@ define([
         cache: false,
         success: function (response) {
           folderButtons.updateFolderPermissionButtons(response, model.get('browserUtils').multiSelectItems);
-          //RunCustomAmbienteLivre2();
         },
         error: function (response) {
           folderButtons.updateFolderPermissionButtons(false, model.get('browserUtils').multiSelectItems);
@@ -397,7 +396,8 @@ define([
         success: function (response) {
           console.log('passei pela função sucess ajax - browser'); 	
           fileButtons.updateFilePermissionButtons(response);
-          window.parent.RunCustomAmbienteLivre();
+          //simple-mantle - Executa sobreposição de Htmls via jQuery 
+          window.parent.RunCustomAmbienteLivre(); //simple-mantle
         },
         error: function (response) {
           console.log('passei pela função error ajax - browser'); 	
@@ -1560,17 +1560,17 @@ function perspectiveActivated() {
   FileBrowser.update(FileBrowser.fileBrowserModel.getFolderClicked().attr("path"));
 }
 
-function RunCustomAmbienteLivre2() {
+/*function RunCustomAmbienteLivre2() {
 	console.log('passei RunCustomAmbienteLivre2');
 	// alert("rodando RUN");
 
-	/*if($('#applicationShell').hasClass("applicationShell")){
+	if($('#applicationShell').hasClass("applicationShell")){
 		console.log('passei RunCustomAmbienteLivre2 e tem DIV');
 	}
 	else {
 		console.log('passei RunCustomAmbienteLivre2 e NAO tem DIV');
         setTimeout("RunCustomAmbienteLivre2()", 300);			
-	}*/
+	}
 
 	console.log('RunCustomAmbienteLivre2 - Vou adicionar a class');
 
@@ -1579,14 +1579,14 @@ function RunCustomAmbienteLivre2() {
     $("#applicationShell").children().eq(1).addClass('lTab');
     $("#applicationShell").children().eq(3).addClass('lBrowser');
     
-   /* if($("#applicationShell").children().eq(3).addClass('lBrowser')) {
+    if($("#applicationShell").children().eq(3).addClass('lBrowser')) {
 		console.log('passei2 e child 3 NAO tem Class');	    	
     }
 	else {
 			console.log('passei2 e child 3 NAO tem Class');
 	        setTimeout("RunCustomAmbienteLivre2()", 300);			
 	}
-*/
+
     // removendo atributo aria-hiden
     $("#applicationShell").children().eq(1).removeAttr('aria-hidden');
     $("#applicationShell").children().eq(3).removeAttr('aria-hidden');
@@ -1602,4 +1602,4 @@ function RunCustomAmbienteLivre2() {
 	
 	console.log('RunCustomAmbienteLivre2 - fiz tudo');  
 }
-
+*/
