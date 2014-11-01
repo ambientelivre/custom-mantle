@@ -396,7 +396,7 @@ define([
         success: function (response) {
           console.log('passei pela função sucess ajax - browser'); 	
           fileButtons.updateFilePermissionButtons(response);
-          //simple-mantle - Executa sobreposição de Htmls via jQuery 
+          //simple-mantle - Executa sobreposição de Htmls via jQuery no clique sobre um file
           window.parent.RunCustomAmbienteLivre(); //simple-mantle
         },
         error: function (response) {
@@ -1559,47 +1559,3 @@ function perspectiveActivated() {
   window.top.mantle_isBrowseRepoDirty = true;
   FileBrowser.update(FileBrowser.fileBrowserModel.getFolderClicked().attr("path"));
 }
-
-/*function RunCustomAmbienteLivre2() {
-	console.log('passei RunCustomAmbienteLivre2');
-	// alert("rodando RUN");
-
-	if($('#applicationShell').hasClass("applicationShell")){
-		console.log('passei RunCustomAmbienteLivre2 e tem DIV');
-	}
-	else {
-		console.log('passei RunCustomAmbienteLivre2 e NAO tem DIV');
-        setTimeout("RunCustomAmbienteLivre2()", 300);			
-	}
-
-	console.log('RunCustomAmbienteLivre2 - Vou adicionar a class');
-
-	
-	//ADICIONA A CLASSE
-    $("#applicationShell").children().eq(1).addClass('lTab');
-    $("#applicationShell").children().eq(3).addClass('lBrowser');
-    
-    if($("#applicationShell").children().eq(3).addClass('lBrowser')) {
-		console.log('passei2 e child 3 NAO tem Class');	    	
-    }
-	else {
-			console.log('passei2 e child 3 NAO tem Class');
-	        setTimeout("RunCustomAmbienteLivre2()", 300);			
-	}
-
-    // removendo atributo aria-hiden
-    $("#applicationShell").children().eq(1).removeAttr('aria-hidden');
-    $("#applicationShell").children().eq(3).removeAttr('aria-hidden');
-	    
-    // removendo atributo style dysplay que estava none para null    
-	$("#applicationShell").children().eq(1).css('display','');
-	$("#applicationShell").children().eq(1).css('float','right');
-	$("#applicationShell").children().eq(1).css('width','77%');
-	        
-	$("#applicationShell").children().eq(3).css('display','');
-	$("#applicationShell").children().eq(3).css('float','left');
-	$("#applicationShell").children().eq(3).css('width','22%');
-	
-	console.log('RunCustomAmbienteLivre2 - fiz tudo');  
-}
-*/

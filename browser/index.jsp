@@ -39,8 +39,7 @@
 }
 
 .main-container {
-	 /* max-width: 1344b px !important; */
-	 max-width: 240px !important;
+	 max-width: 160px !important;
 }
 
 </style>

@@ -51,19 +51,15 @@
  <style>
  
 .pentaho-tab-panel {
-
 }
 </style>
 	<%
 		}
    		 else { %>
-   			 
         <style>
    		#fileBrowser {
    		    width: 100%; 
    		 }
-   		 
-   		 
    		</style>
  	<% } %>
    			 
@@ -320,18 +316,42 @@
 			}
 		}
 
+		function AlterPerspectiveAndCustom1() {
+			 // alert("entrei na ");
+	    	  window.top.mantle_openRepositoryFile("/public/plugin-samples/pentaho-cdf/start_here.xcdf", "RUN");
+			  //Marcio - Alterada a perspectiva	
+		}
+
+		function AlterPerspectiveAndCustom2() {
+			 // alert("entrei na ");
+			  window.top.mantle_setPerspective('browser.perspective');
+ 	          window.parent.RunCustomAmbienteLivre(); //simple-mantle
+			  //Marcio - Alterada a perspectiva	
+		}
+
+
+		
+        var varTimeOut;		
+
+				
 		<%
+		 //simple-mantle - Para usuarios diferentes de admin a perspectica e alterada para browser e
+		 // aberta um dashboard inicial com o home home desenvolvido em CDE
 		 String userName = PentahoSessionHolder.getSession().getName();
    		 if (!userName.equals("admin")) { 
 		%>
-			  //Marcio - Alterada a perspectiva	
-			  
- 			  //window.top.mantle_setPerspective('browser.perspective');
-			  // abaixo teste que abre dashboard ja na inicializaçao
-    		  window.top.mantle_openRepositoryFile("/public/plugin-samples/pentaho-cdf/start_here.xcdf", "RUN");
+              // aguarda um tempo para carregar outros JSs
+	    	 // varTimeOut = setTimeout(AlterPerspectiveAndCustom1, 10000);	    	  
+	    	  AlterPerspectiveAndCustom1();	    	  
+
+              varTimeOut = setTimeout(AlterPerspectiveAndCustom2, 1000);	    	  
+
+              // abaixo teste que abre dashboard ja na inicializaçao
+    		 // window.top.mantle_openRepositoryFile("/public/plugin-samples/pentaho-cdf/start_here.xcdf", "RUN");
     		  //perspectiveActivated();
     		  
-    		  //window.top.mantle_openRepositoryFile("/public/plugin-samples/pentaho-cdf/start_here.xcdf", "RUN");
+	          
+	          
 	<%
 		}
 	%>

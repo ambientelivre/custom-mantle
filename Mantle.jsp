@@ -181,10 +181,8 @@ if (!userName.equals("admin")) {
 }
 
 .pentaho-tab-panel {
-	/*left: 200px !important;*/
 	width: 1110px !important; 
 }
-
 
 </style>
 <%
@@ -193,7 +191,6 @@ if (!userName.equals("admin")) {
 </head>
 
 <body oncontextmenu="return false;" class="pentaho-page-background">
-
   <div ng-show="viewContainer === 'PUC'" 
     class="ng-app-element deny-animation-change" animate="fade" 
     id="pucWrapper" cellspacing="0" cellpadding="0" style="width: 100%; height: 100%;">
@@ -256,7 +253,7 @@ else {
         document.getElementById("pucWrapper").style.left = "0";
         document.getElementById("pucWrapper").style.position = "relative";
         window.allFramesLoaded = true;
-    	RunCustomAmbienteLivre(); 
+    	//RunCustomAmbienteLivre(); 
       } else {
         // check again in a bit
         setTimeout("notifyOfLoad()", 300);
@@ -275,7 +272,16 @@ else {
 		 if (!userName.equals("admin")) { 
 		 // dmininui o tamanho do botao da tabela para selecao do usuário
 		 %>
-		// para resolver a demora no primeiro login pos restart server not ok
+
+		 
+       // window.top.mantle_setPerspective('browser.perspective'); //simple-mantle
+
+       // alert('setei perspectiva');
+       // return true;
+        
+		 
+		 
+		 // para resolver a demora no primeiro login pos restart server not ok
  		if($('#applicationShell').hasClass("applicationShell")){
 			console.log('passei RunCustomAmbienteLivre e tem DIV');
 		}
@@ -301,8 +307,7 @@ else {
 		else {
 			console.log('passei2 e child 3 NAO tem Class');
 	        setTimeout("RunCustomAmbienteLivre()", 300);			
-		}
- 
+		} 
 */		 
 		//ADICIONA A CLASSE
 	    $("#applicationShell").children().eq(1).addClass('lTab');
@@ -315,15 +320,20 @@ else {
 	    // removendo atributo style dysplay que estava none para null    
 		$("#applicationShell").children().eq(1).css('display','');
 		$("#applicationShell").children().eq(1).css('float','right');
-		$("#applicationShell").children().eq(1).css('width','77%');
+		$("#applicationShell").children().eq(1).css('width','84%');
 		        
 		$("#applicationShell").children().eq(3).css('display','');
 		$("#applicationShell").children().eq(3).css('float','left');
-		$("#applicationShell").children().eq(3).css('width','22%');
+		$("#applicationShell").children().eq(3).css('width','16%');
 		
 		//mostra iframe escondido ( browser ) dentro da 4 div o primeiro frame (browser.perspective)
 		$("#applicationShell").children().eq(3).children().eq(0).css('display','');
 		$("#applicationShell").children().eq(3).children().eq(0).removeAttr('aria-hidden');
+
+		$("#applicationShell").children().eq(1).children().eq(0).css('display','');
+		$("#applicationShell").children().eq(1).children().eq(0).removeAttr('aria-hidden');
+
+		
 		
 		console.log('RunCustomAmbienteLivre - fiz tudo');  
 		<%
