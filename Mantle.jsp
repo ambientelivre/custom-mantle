@@ -332,6 +332,10 @@ else {
 
 		$("#applicationShell").children().eq(1).children().eq(0).css('display','');
 		$("#applicationShell").children().eq(1).children().eq(0).removeAttr('aria-hidden');
+		
+
+		
+		
 
 		
 		

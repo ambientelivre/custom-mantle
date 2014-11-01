@@ -344,7 +344,7 @@
 	    	 // varTimeOut = setTimeout(AlterPerspectiveAndCustom1, 10000);	    	  
 	    	  AlterPerspectiveAndCustom1();	    	  
 
-              varTimeOut = setTimeout(AlterPerspectiveAndCustom2, 1000);	    	  
+              varTimeOut = setTimeout(AlterPerspectiveAndCustom2, 1200);	    	  
 
               // abaixo teste que abre dashboard ja na inicializaçao
     		 // window.top.mantle_openRepositoryFile("/public/plugin-samples/pentaho-cdf/start_here.xcdf", "RUN");

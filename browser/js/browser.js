@@ -237,7 +237,7 @@ define([
 
     
     initialize: function () {
-        console.log('passe pela função initialize');	
+        console.log('passe pela função initialize');
 
         //if ( window.top.HOME_FOLDER != "/home/admin") { // aqui deve ser igual 
 
@@ -304,6 +304,7 @@ define([
       }
 
       myself.get("foldersTreeModel").set("startFolder", myself.get("startFolder"));
+      
     },
 
     onFavoritesChanged: function () {
@@ -363,7 +364,9 @@ define([
     },
     
     updateFileClicked: function () {
-      console.log('passe pela função updateFileClicked');	    	  
+      console.log('passe pela função updateFileClicked');	    	
+      
+      
       var clickedFile = this.get("fileListModel").get("clickedFile");
             
       
@@ -440,6 +443,7 @@ define([
       var myself = this;
       //trigger file list update
       myself.get("fileListModel").set("path", myself.get("clickedFolder").obj.attr("path"));
+       
     },
 
     updateDescriptions: function () { 	
@@ -1467,6 +1471,10 @@ define([
       setTimeout(function () {
         myself.model.set("runSpinner", false);
       }, 100);
+      
+      //simple-mantle - Altera o nome Folders e Files na Perspectiva Browser 
+      $("#foldersHeader").children().eq(0).text("Indicadores"); //simple-mantle
+      $("#filesHeader").html("Cubos e Dashboards"); //simple-mantle      
     },
 
     manageSpinner: function () {

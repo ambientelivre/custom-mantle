@@ -170,8 +170,14 @@ function perspectiveActivated() {
   if (controller) {
     controller.refreshAll();
   }
+  //alert('aqui');
   //simple-mantle  - Esta função e sempre chamada a cada vez que é fechada todas as abas da perspectiva
   //Opened , fizemos o direcionamento para a perspectiva browser em todos os casos, mesmo para o admin
+  
+   // no firefox funciona com TOP
    window.top.mantle_setPerspective('browser.perspective'); //simple-mantle
+
+   // no Chome funciona com parent
+   window.parent.mantle_setPerspective('browser.perspective'); //simple-mantle
 }
 
