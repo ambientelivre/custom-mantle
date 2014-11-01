@@ -17,5 +17,3 @@ Melhorias:
 - Manter apenas um arvore de navegação com Folders e Files no mesmo painel
 
 
-Bugs
-- No primeiro login falha a renderização
