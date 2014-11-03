@@ -1487,7 +1487,7 @@ define([
 
    //  $(".bootstrap").children().eq(1).append("<img src='http://localhost:8080/pentaho/api/repos/%3Apublic%3Aplugin-samples%3Apentaho-cdf%3Astart_here.xcdf/resources/style/images/cdfSample.png' onclick='javascript:alert(1);' style='float:right;'></img>");
     
-     $("#fileBrowser").after("<div id='divcollapse' style='width:185px !important;height:500px; background: url(../images/simple-mantle/slide.png) no-repeat center right;' onclick='javascript:window.parent.collapseSimple();javascript:collapseBrowser();'></div>");
+     $("#fileBrowser").after("<div id='divcollapse' style='width:185px !important;height:450px; background: url(../images/simple-mantle/slide.png) no-repeat center right;' onclick='javascript:window.parent.collapseSimple();javascript:collapseBrowser();'></div>");
      
      
      //background: url(\'http://localhost:8080/pentaho/api/repos/%3Apublic%3Aplugin-samples%3Apentaho-cdf%3Astart_here.xcdf/resources/style/images/cdfSample.png\') no-repeat center right'
