@@ -317,10 +317,10 @@
 		}
 
 		function AlterPerspectiveAndCustom1() {
-			 // alert("entrei na ");
-	    	  window.top.mantle_openRepositoryFile("/public/plugin-samples/pentaho-cdf/start_here.xcdf", "RUN");
-			  //Marcio - Alterada a perspectiva	
-		}
+  			//window.top.mantle_openRepositoryFile("content/saiku-ui/index.html?biplugin5=true","RUN");
+  			window.top.mantle_openRepositoryFile("/public/home.wcdf", "RUN");  			  
+ 			window.parent.openURL('Analise', 'Analise', 'content/saiku-ui/index.html?biplugin5=true');
+ 		}
 
 		function AlterPerspectiveAndCustom2() {
 			 // alert("entrei na ");
@@ -329,10 +329,8 @@
 			  //Marcio - Alterada a perspectiva	
 		}
 
-
 		
         var varTimeOut;		
-
 				
 		<%
 		 //simple-mantle - Para usuarios diferentes de admin a perspectica e alterada para browser e

@@ -266,21 +266,31 @@ else {
     }, 4000);
   });
 
+  //simple-mantle esconde browser
+  function collapseSimple() {
+	    $(".lTab").css("width","98%");
+	    $(".lBrowser").css("width","2%");
+	    $("#fileBrowser").css("display","none");
+  }
+
+  //simple-mantle retorna Browser
+  function collapseSimpleRET() {
+	    $(".lTab").css("width","84%");
+	    $(".lBrowser").css("width","16%");
+	    $("#fileBrowser").css("display","");
+   }
+  
   function RunCustomAmbienteLivre() {
 		console.log('passei RunCustomAmbienteLivre');
 		  <%
 		 if (!userName.equals("admin")) { 
 		 // dmininui o tamanho do botao da tabela para selecao do usuário
 		 %>
-
-		 
        // window.top.mantle_setPerspective('browser.perspective'); //simple-mantle
 
        // alert('setei perspectiva');
        // return true;
         
-		 
-		 
 		 // para resolver a demora no primeiro login pos restart server not ok
  		if($('#applicationShell').hasClass("applicationShell")){
 			console.log('passei RunCustomAmbienteLivre e tem DIV');
@@ -332,11 +342,6 @@ else {
 
 		$("#applicationShell").children().eq(1).children().eq(0).css('display','');
 		$("#applicationShell").children().eq(1).children().eq(0).removeAttr('aria-hidden');
-		
-
-		
-		
-
 		
 		
 		console.log('RunCustomAmbienteLivre - fiz tudo');  

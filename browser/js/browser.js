@@ -1225,6 +1225,9 @@ define([
 
   });
 
+  
+ 
+  
 
   var FileBrowserFileListView = Backbone.View.extend({
     events: {
@@ -1462,6 +1465,8 @@ define([
       this.model.set("desel", 0);
     },
 
+ 
+    
     updateFileList: function () {
       console.log('passei pela funcao updateFileList - browser.js'); 	
 
@@ -1474,9 +1479,27 @@ define([
       
       //simple-mantle - Altera o nome Folders e Files na Perspectiva Browser 
       $("#foldersHeader").children().eq(0).text("Indicadores"); //simple-mantle
-      $("#filesHeader").html("Cubos e Dashboards"); //simple-mantle      
+      $("#filesHeader").html("Arquivos"); //simple-mantle  
+      //$("#fileBrowser").append("<img src='http://localhost:8080/pentaho/api/repos/%3Apublic%3Aplugin-samples%3Apentaho-cdf%3Astart_here.xcdf/resources/style/images/cdfSample.png' onclick='javascript:alert(1);'></img>");
+      //$("#fileBrowser").after("<img src='http://localhost:8080/pentaho/api/repos/%3Apublic%3Aplugin-samples%3Apentaho-cdf%3Astart_here.xcdf/resources/style/images/cdfSample.png' onclick='javascript:alert(1);'></img>");
+ 
+     // $(".bootstrap").append("<img src='http://localhost:8080/pentaho/api/repos/%3Apublic%3Aplugin-samples%3Apentaho-cdf%3Astart_here.xcdf/resources/style/images/cdfSample.png' onclick='javascript:alert(1);' style='float:right;'></img>");
+
+   //  $(".bootstrap").children().eq(1).append("<img src='http://localhost:8080/pentaho/api/repos/%3Apublic%3Aplugin-samples%3Apentaho-cdf%3Astart_here.xcdf/resources/style/images/cdfSample.png' onclick='javascript:alert(1);' style='float:right;'></img>");
+    
+     $("#fileBrowser").after("<div id='divcollapse' style='width:185px !important;height:500px; background: url(../images/simple-mantle/slide.png) no-repeat center right;' onclick='javascript:window.parent.collapseSimple();javascript:collapseBrowser();'></div>");
+     
+     
+     //background: url(\'http://localhost:8080/pentaho/api/repos/%3Apublic%3Aplugin-samples%3Apentaho-cdf%3Astart_here.xcdf/resources/style/images/cdfSample.png\') no-repeat center right'
+     
+     // $("#filesHeader").after("<img src='http://localhost:8080/pentaho/api/repos/%3Apublic%3Aplugin-samples%3Apentaho-cdf%3Astart_here.xcdf/resources/style/images/cdfSample.png' onclick='javascript:alert(1);'></img>");
+     // $("#filesHeader").parent().after("<img src='http://localhost:8080/pentaho/api/repos/%3Apublic%3Aplugin-samples%3Apentaho-cdf%3Astart_here.xcdf/resources/style/images/cdfSample.png' onclick='javascript:alert(1);'></img>");
+      
     },
 
+ 
+
+    
     manageSpinner: function () {
       var myself = this,
           runSpinner = this.model.get("runSpinner"),
@@ -1567,3 +1590,16 @@ function perspectiveActivated() {
   window.top.mantle_isBrowseRepoDirty = true;
   FileBrowser.update(FileBrowser.fileBrowserModel.getFolderClicked().attr("path"));
 }
+
+function collapseBrowser() {
+    $("#fileBrowser").css("display","none");
+    $("#divcollapse").css("background","url(../images/simple-mantle/slide.png) no-repeat center left")
+    $("#divcollapse").attr("onclick","collapseBrowserRET();window.parent.collapseSimpleRET()");    
+}
+
+function collapseBrowserRET() {
+    $("#fileBrowser").css("display","");
+    $("#divcollapse").css("background","url(../images/simple-mantle/slide.png) no-repeat center right")
+    $("#divcollapse").attr("onclick","collapseBrowser();window.parent.collapseSimple()");    
+}
+
