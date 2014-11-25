@@ -60,6 +60,11 @@
    		#fileBrowser {
    		    width: 100%; 
    		 }
+   		 
+   		 
+   		 
+   		 
+   		 
    		</style>
  	<% } %>
    			 

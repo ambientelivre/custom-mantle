@@ -46,13 +46,10 @@
 	<%
 		}
    		 else { %>
-   			 
         <style>
    		#fileBrowser {
    		    width: 100%; 
    		 }
-   		 
-   		 
    		</style>
  	<% } %>
 

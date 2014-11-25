@@ -180,6 +180,11 @@ if (!userName.equals("admin")) {
     padding-top: 0px;
 }
 
+#pucUserDropDown {
+    margin-right: 0;
+}
+
+
 .pentaho-tab-panel {
 	width: 1110px !important; 
 }
@@ -212,7 +217,7 @@ if (userName.equals("admin")) {
 else {
 	//esconde menus caso nao seja admin
 %>
-    <div id="pucHeader" cellspacing="0" cellpadding="0" style="height: 4px;padding: 0px 0px 0px" >
+    <div id="pucHeader" cellspacing="0" cellpadding="0" style="height: 22px;padding: 0px 0px 0px" >
       <div id="pucMenuBar" style="display:none" ></div>
       <div id="pucPerspectives" style="display:none" ></div>
       <div id="pucToolBar" style="display:none"></div>
@@ -288,8 +293,6 @@ else {
 		 %>
        // window.top.mantle_setPerspective('browser.perspective'); //simple-mantle
 
-       // alert('setei perspectiva');
-       // return true;
         
 		 // para resolver a demora no primeiro login pos restart server not ok
  		if($('#applicationShell').hasClass("applicationShell")){
