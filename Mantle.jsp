@@ -175,9 +175,13 @@ if (!userName.equals("admin")) {
 // dmininui o tamanho do botao da tabela para selecao do usuário
 %>
 <style>
-#pucUserDropDown
-.custom-dropdown {
-    padding-top: 0px;
+
+#pucUserDropDown .custom-dropdown {
+    padding-top: 0px !important;
+}
+
+#pucUserDropDown .custom-dropdown-label {
+    font-size: 14px !important;
 }
 
 #pucUserDropDown {
@@ -223,7 +227,7 @@ else {
       <div id="pucToolBar" style="display:none"></div>
       <div id="pucUserDropDown"></div>
     </div>
-    <div id="pucContent" style="top: 23px"></div>
+    <div id="pucContent" style="top: 22px"></div>
 <%	
 }
 %>
