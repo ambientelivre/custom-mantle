@@ -176,6 +176,10 @@ if (!userName.equals("admin")) {
 %>
 <style>
 
+.pentaho-tabWidget {
+   border-top: 4px solid #666666 !important;
+}
+
 #pucUserDropDown .custom-dropdown {
     padding-top: 0px !important;
 }
@@ -188,11 +192,13 @@ if (!userName.equals("admin")) {
     margin-right: 0;
 }
 
-
 .pentaho-tab-panel {
-	width: 1110px !important; 
+	width: 99% !important; 
 }
 
+.bootstrap body {
+  font-size: 8px !important;
+}
 </style>
 <%
 }
@@ -284,8 +290,8 @@ else {
 
   //simple-mantle retorna Browser
   function collapseSimpleRET() {
-	    $(".lTab").css("width","84%");
-	    $(".lBrowser").css("width","16%");
+	    $(".lTab").css("width","82%");
+	    $(".lBrowser").css("width","18%");
 	    $("#fileBrowser").css("display","");
    }
   
@@ -307,25 +313,6 @@ else {
 	        setTimeout("RunCustomAmbienteLivre()", 300);			
 		}
  		
-/*
-	     if($("#applicationShell").children().eq(3).children().eq(0).hasClass('gwt-Frame')) {
-   		    console.log('passei2 e child 3 by 0 tem gwt-Frame');	    	
-   	     }
-	     else {
-		   console.log('passei2 e child 3 by 0 NAO tem gwt-Frame');	    	
-		   setTimeout("RunCustomAmbienteLivre()", 300);			
-         }
- */
-
-/*
-	     if($("#applicationShell").children().eq(3).hasClass('lBrowser')) {
-			console.log('passei2 e child 3 NAO tem Class');	    	
-	    }
-		else {
-			console.log('passei2 e child 3 NAO tem Class');
-	        setTimeout("RunCustomAmbienteLivre()", 300);			
-		} 
-*/		 
 		//ADICIONA A CLASSE
 	    $("#applicationShell").children().eq(1).addClass('lTab');
 	    $("#applicationShell").children().eq(3).addClass('lBrowser');
@@ -337,11 +324,11 @@ else {
 	    // removendo atributo style dysplay que estava none para null    
 		$("#applicationShell").children().eq(1).css('display','');
 		$("#applicationShell").children().eq(1).css('float','right');
-		$("#applicationShell").children().eq(1).css('width','84%');
+		$("#applicationShell").children().eq(1).css('width','82%');
 		        
 		$("#applicationShell").children().eq(3).css('display','');
 		$("#applicationShell").children().eq(3).css('float','left');
-		$("#applicationShell").children().eq(3).css('width','16%');
+		$("#applicationShell").children().eq(3).css('width','18%');
 		
 		//mostra iframe escondido ( browser ) dentro da 4 div o primeiro frame (browser.perspective)
 		$("#applicationShell").children().eq(3).children().eq(0).css('display','');

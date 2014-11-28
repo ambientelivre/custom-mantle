@@ -60,17 +60,9 @@
    		#fileBrowser {
    		    width: 100%; 
    		 }
-   		 
-   		 
-   		 
-   		 
-   		 
-   		</style>
+ </style>
  	<% } %>
    			 
-
-  
-
   <!-- We need web context for requirejs and css -->
   <script type="text/javascript" src="webcontext.js?context=mantle&cssOnly=true"></script>
 

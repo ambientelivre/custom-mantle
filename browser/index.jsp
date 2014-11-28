@@ -39,7 +39,22 @@
 }
 
 .main-container {
-	 max-width: 160px !important;
+	 max-width: 180px !important;
+}
+
+.container-fluid {
+    padding-left: 23px !important;
+    padding-rigth: 23px !important;
+    
+}
+
+.bootstrap body {
+    font-size: 12px !important;
+    line-height: 16px !important;
+}
+
+element.style {
+    height: 10px;
 }
 
 </style>
