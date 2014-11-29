@@ -176,8 +176,10 @@ if (!userName.equals("admin")) {
 %>
 <style>
 
+/* Aumenta separação entre Linhas das abas dos paineis */
+
 .pentaho-tabWidget {
-   border-top: 4px solid #666666 !important;
+   margin-top: 4px !important;
 }
 
 #pucUserDropDown .custom-dropdown {
