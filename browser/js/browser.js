@@ -90,7 +90,7 @@ define([
 	console.log(' passei pela funcao FileBrowser.encodePathComponents - browser.js');
 	
 	//simple-mantle
-    $("#filesHeader").text("Arquivos"); //simple-mantle 
+    //$("#filesHeader").text("Arquivos"); //simple-mantle 
     if ( window.top.SESSION_NAME != "admin") // not show trash for users
     	$(".trash").css('display','none');
  	
@@ -854,6 +854,7 @@ define([
     },
 
     updateFolderBrowserHeader: function () {
+    	
       var $el = $(this.el),
           $folderBrowserContainer = $el.find($("#fileBrowserFolders"));
 
@@ -1479,8 +1480,9 @@ define([
       var myself = this;
       this.render();
 
+      //AQUI2
       //simple-mantle - Altera o nome Folders e Files na Perspectiva Browser 
-      $("#foldersHeader").children().eq(0).text("Indicadores"); //simple-mantle
+      //$("#foldersHeader").children().eq(0).text("Indicadores"); //simple-mantle
      // $("#filesHeader").text("Arquivos"); //simple-mantle  
 
       if (document.getElementById('divcollapse') == null) {
