@@ -28,11 +28,11 @@
 
 <!-- Le styles -->
 <link href="css/browser.css" rel="stylesheet">
-
 		<%
 		 String userNameW = PentahoSessionHolder.getSession().getName();
    		 if (!userNameW.equals("admin")) { 
 		%>  
+<link href="css/simple-mantle-browser.css" rel="stylesheet">
    <style>
 #fileBrowser {
     width: 100% !important; 

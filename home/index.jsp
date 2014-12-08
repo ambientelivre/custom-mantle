@@ -337,7 +337,10 @@
 		%>
               // aguarda um tempo para carregar outros JSs
 	    	 // varTimeOut = setTimeout(AlterPerspectiveAndCustom1, 10000);	    	  
-	    	  AlterPerspectiveAndCustom1();	    	  
+        
+              AlterPerspectiveAndCustom1();
+	    	  
+ 
 
               varTimeOut = setTimeout(AlterPerspectiveAndCustom2, 1200);	    	  
 

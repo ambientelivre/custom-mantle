@@ -89,8 +89,7 @@ define([
   FileBrowser.encodePathComponents = function (path) {
 	console.log(' passei pela funcao FileBrowser.encodePathComponents - browser.js');
 	
-	//simple-mantle
-    //$("#filesHeader").text("Arquivos"); //simple-mantle 
+	//simple-mantle 
     if ( window.top.SESSION_NAME != "admin") // not show trash for users
     	$(".trash").css('display','none');
  	
@@ -1481,10 +1480,19 @@ define([
       this.render();
 
       //AQUI2
-      //simple-mantle - Altera o nome Folders e Files na Perspectiva Browser 
+      //simple-mantle - Adiciona botão para abrir Saiku ao lado do Refhesh
       //$("#foldersHeader").children().eq(0).text("Indicadores"); //simple-mantle
-     // $("#filesHeader").text("Arquivos"); //simple-mantle  
-
+     // $("#foldersHeader").children().eq(0).addClass("simple-mantle-button-selected"); //simple-mantle
+      // $("#openSaikuIcon").on('click',$.proxy( window.parent.openURL, this, 'Analise', 'Analise','content/saiku-ui/index.html?biplugin5=true'));
+ 
+      $("#foldersHeader").append("<div class='open-saiku open-saiku-pull-right' title='Analises' id='openSaikuIcon' ></div>"); //simple-mantle
+      $("#openSaikuIcon").on('click', function() {  
+    	 	  window.parent.openURL('Analise','Analise','content/saiku-ui/index.html?biplugin5=true');
+    	 	  window.parent.RunCustomAmbienteLivre();
+        }
+      );
+      
+      
       if (document.getElementById('divcollapse') == null) {
     	  $("#fileBrowser").after("<div class='divcollapse' id='divcollapse' style='width:207px !important;height:450px; background: url(../images/simple-mantle/slide.png) no-repeat center right;' onclick='javascript:window.parent.collapseSimple();javascript:collapseBrowser();'></div>");
       }
