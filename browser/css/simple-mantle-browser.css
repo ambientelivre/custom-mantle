@@ -1,0 +1,42 @@
+/*
+ * ******************************************************************************
+ * Ambiente Livre Tecnologia
+ *
+ * Copyright (C) 2004-2014 by Ambiente Livre : http://www.ambientelivre.com.br
+ * ******************************************************************************
+ */
+
+.simple-mantle-button-selected {
+background: -moz-linear-gradient(center top , #4F4F4F 0%, rgba(198, 198, 198, 0.98) 2%, rgba(142, 142, 142, 0.92) 7%, rgba(141, 141, 141, 0.88) 10%, rgba(124, 124, 124, 0.93) 47%, rgba(96, 96, 96, 0.93) 49%, rgba(84, 84, 84, 0.94) 59%, #2B2B2B 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-left: 1px solid #222222;
+    border-right: 1px solid #222222;
+    border-top: 1px solid #222222;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #FFFFFF;
+} 
+
+.simple-mantle-button {
+background: -moz-linear-gradient(center top , #3F3F3F 0%, #272727 80%, #000000 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-left: 1px solid #666666;
+    border-right: 1px solid #666666;
+    border-top: 1px solid #666666;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+    display: block;
+    float: left;
+    margin-left: 2px;
+    padding: 4px 8px;
+} 
+
+.open-saiku {
+    background: url("../../../mantle/images/simple-mantle/new_analysis_16.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+}
+
+.open-saiku-pull-right {
+    float: right;
+}
