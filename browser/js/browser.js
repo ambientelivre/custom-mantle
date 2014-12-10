@@ -1485,12 +1485,9 @@ define([
      // $("#foldersHeader").children().eq(0).addClass("simple-mantle-button-selected"); //simple-mantle
       // $("#openSaikuIcon").on('click',$.proxy( window.parent.openURL, this, 'Analise', 'Analise','content/saiku-ui/index.html?biplugin5=true'));
  
-      if($('#openSaikuIcon').hasClass("open-saiku")){
-			console.log('Botao do saiku ja esta na tela');
-		}
-      else {
-      	$("#foldersHeader").append("<div class='open-saiku open-saiku-pull-right' title='Analises' id='openSaikuIcon' ></div>"); //simple-mantle
-      	$("#openSaikuIcon").on('click', function() {  
+      if (document.getElementById('opensaikuicon') == null) {
+      	$("#foldersHeader").append("<div id='opensaikuicon' class='open-saiku open-saiku-pull-right' title='Analises'  ></div>"); //simple-mantle
+      	$("#opensaikuicon").on('click', function() {  
       		window.parent.openURL('Analise','Analise','content/saiku-ui/index.html?biplugin5=true');
       		window.parent.RunCustomAmbienteLivre();
       	}
