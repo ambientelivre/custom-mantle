@@ -31,6 +31,33 @@ Versão Pentaho BI-Server
 5.1 ou Superior
 
 
+FAQ:
+
+Como alterar os nomes e Páginas que abrem no simple-mantle
+
+Para a tela do Saiku
+Acesse o arquivo  ../biserver-ce/tomcat/webapps/pentaho/mantle/browser/js/browser.js e no arquivo ../biserver-ce/tomcat/webapps/pentaho/mantle/home/index.jsp  procure pela função window.parent.openURL e   mude os parâmetros desejados da função
+
+Modelo Padrão da Função:
+
+window.parent.openURL('Analise','Analise','content/saiku-ui/index.html?biplugin5=true');
+
+- O primeiro parâmetro e o nome que vai aparece Internamente  ( ex. Analise )
+- Segundo parâmetro e o nome que na Aba ( ex. Analise )
+- Terceiro parâmetros o atalho do dashboard, visão , report ou tela do PUC que deseja abrir.
+
+
+Para a tela Home
+
+Acesse o arquivo../biserver-ce/tomcat/webapps/pentaho/mantle/home/index.jsp  procure pela função window.top.mantle_openRepositoryFile e  mude os parâmetros desejados da função
+
+window.top.mantle_openRepositoryFile("/public/home.wcdf", "RUN");
+
+- Primeiro parâmetro  Local do arquivo que será aberto
+- Segundo parâmetro deve ser RUN para abrir o artefato.
+
+
+
 Suporte: http://www.ambientelivre.com.br 
 
 
