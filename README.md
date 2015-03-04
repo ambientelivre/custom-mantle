@@ -18,7 +18,7 @@ Funcionalidades implementadas:
 Instalação
 - Altere o tema padrão do Pentaho biserver para Onix.
 - Renomeie o apague o diretório ../biserver-ce/tomcat/webapps/pentaho/mantle
-- crie um diretório mantle em branco no mesmo local e copie todo o conteúdo desto git na mesma
+- crie um diretório mantle em branco no mesmo local e copie todo o conteúdo deste repositório do git na mesma
 - cria na pasta public um dashboard com CDE com o nome home (home.wcdf)
 - Reinicie o biserver
 - Limpe os caches do browser.
